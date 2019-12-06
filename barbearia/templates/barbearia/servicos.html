@@ -1,0 +1,41 @@
+{% extends 'barbearia/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+	<!-- service_area_start -->
+    <br>
+	<div class="service_area">
+	    <div class="container">
+	        <div class="white_bg_pos">
+	                <div class="row">
+	                	{% for servico in servicos %}
+                        <div class="col-xl-6">
+                            <div class="single_service d-flex justify-content-between align-items-center">
+                                <div class="service_inner d-flex align-items-center">
+                                    <div class="thumb">
+                                        <img src="{% static 'img/service/1.png' %}" alt="">
+                                    </div>
+                                    <span>{{servico.nome}}</span>
+                                </div>
+                                <p>………………………..R$ {{servico.preco}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="col-xl-12">
+                                <div class="book_btn text-center">
+                                    <a class="boxed-btn3" href="
+                                    {% if user.is_authenticated %}
+                                        {% url 'meus_agendamentos' pk=user.pk %} 
+                                    {% else %}
+                                        {% url 'form_login' %}
+                                    {% endif %}">Faça seu Agendamento</a>
+                                </div>
+                        </div>
+                    </div>
+	        	</div>
+	    	</div>
+		</div>
+	<!-- service_area_end -->
+
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'barbearia/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+	<!--================Blog Area =================-->
+	<section class="blog_area section-padding">
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-lg-8 mb-5 mb-lg-0">
+	                <div class="blog_left_sidebar">
+						{%  for post in posts  %}
+	                    <article class="blog_item">
+	                        <div class="blog_item_img">
+	                            <img class="card-img rounded-0" src="{{ post.imagem.url }}" width="400px" height="500px">
+	                            <i class="blog_item_date">
+	                                <h3>{{post.data_publicacao}}</h3>
+	                            </i>
+	                        </div>
+
+	                        <div class="blog_details">
+	                            <i class="d-inline-block">
+	                                <h2>{{ post.titulo}}</h2>
+	                            </i>
+	                            <p>{{ post.descricao }}</p>
+	                            <ul class="blog-info-link">
+	                                <li><i class="fa fa-user"></i> {{ post.autor }}</li>
+	                            </ul>
+	                        </div>
+	                    </article>
+						{% endfor %}
+	                    <nav class="blog-pagination justify-content-center d-flex">
+	                        <ul class="pagination">
+	                            <li class="page-item">
+	                                <a href="#" class="page-link" aria-label="Previous">
+	                                    <i class="ti-angle-left"></i>
+	                                </a>
+	                            </li>
+	                            <li class="page-item">
+	                                <a href="#" class="page-link">1</a>
+	                            </li>
+	                            <li class="page-item active">
+	                                <a href="#" class="page-link">2</a>
+	                            </li>
+	                            <li class="page-item">
+	                                <a href="#" class="page-link" aria-label="Next">
+	                                    <i class="ti-angle-right"></i>
+	                                </a>
+	                            </li>
+	                        </ul>
+	                    </nav>
+	                </div>
+	            </div>
+                    <div class="col-lg-4">
+                        <div class="blog_right_sidebar">
+                        <h3 class="widget_title">Posts Recentes</h3>
+                        {% for post_recente in posts_recentes %}
+                        <div class="media post_item">
+                            <img src="{{ post_recente.imagem.url }}" alt="post" width="45px">
+                            <div class="media-body">
+                                <i>
+                                    <h3 style="padding-left: 15px">  {{post_recente.titulo}}</h3>
+                                </i>
+                                <p style="padding-left: 15px">{{post_recente.data_publicacao}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+	            </div>
+	        </div>
+	    </div>
+	</section>
+	<!--================Blog Area =================-->
+{% endblock %}

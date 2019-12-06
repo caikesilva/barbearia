@@ -1,0 +1,69 @@
+{% extends 'barbearia/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+	<section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="contact-title">Meus Agendamentos <a href="{% url 'form_agendamento' %}" style="padding-left: 39%"><button class="btn btn-buton">+</button></a></h2>
+                </div>
+                <div class="col-lg-8">
+                    {% if msg %}
+                        <div class="alert alert-success" role="alert">
+                            <h5>{{ msg }}</h5>
+                        </div>
+                    {% endif %}
+                	<table class="table table-hover">
+                	  <thead class="thead-dark">
+                	    <tr>
+                	      <th scope="col">Nome</th>
+                	      <th scope="col">Serviço</th>
+                	      <th scope="col">Data</th>
+                          <th scope="col">Hora</th>
+                	      <th scope="col">Alterar</th>
+                	      <th scope="col">Excluir</th>
+                	    </tr>
+                	  </thead>
+                	  <tbody>
+                	  	{% for meu_agendamento in meus_agendamentos %}
+                	    <tr>
+                	      <td>{{user.username}}</td>
+                	      <td>{{meu_agendamento.servico}}</td>
+                	      <td>{{meu_agendamento.data_agendamento}}</td>
+                          <td>{{meu_agendamento.hora}}</td>
+                	      <td><a href="{% url 'form_alterar_agendamento' pk=meu_agendamento.id %}"><img src="{% static 'img/escrever.svg' %}" width="20px"></a></td>
+                	      <td><a href="{% url 'excluir_agendamento' pk=meu_agendamento.id %}"><img src="{% static 'img/lata-de-lixo.svg' %}" width="20px"></a></td>
+                	    </tr>
+                	    {% endfor %}
+                	  </tbody>
+                	</table>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-home"></i></span>
+                        <div class="media-body">
+                            <h3>Buttonwood, California.</h3>
+                            <p>Rosemead, CA 91770</p>
+                        </div>
+                    </div>
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                        <div class="media-body">
+                            <h3>+1 253 565 2365</h3>
+                            <p>Mon to Fri 9am to 6pm</p>
+                        </div>
+                    </div>
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-email"></i></span>
+                        <div class="media-body">
+                            <h3>support@colorlib.com</h3>
+                            <p>Send us your query anytime!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br>
+{% endblock %}
